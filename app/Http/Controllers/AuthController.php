@@ -36,4 +36,28 @@ class AuthController extends Controller
         session()->forget('user');
         return redirect()->route('news.index')->with('success', 'Вы вышли из системы.');
     }
+
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'login' => 'required|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        DB::table('users')->insert([
+            'login' => $request->login,
+            'password' => Hash::make($request->password),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        session(['user' => $request->login]);
+
+        return redirect()->route('profile')->with('success', 'Вы успешно зарегистрированы!');
+    }
 }

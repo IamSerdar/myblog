@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">Авторизация</div>
+                <div class="card-header text-center">Регистрация</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -16,21 +16,22 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="login" class="form-label">Логин</label>
+                            <label class="form-label">Логин</label>
                             <input type="text" name="login" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Пароль</label>
+                            <label class="form-label">Пароль</label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Войти</button>
+                        <div class="mb-3">
+                            <label class="form-label">Повторите пароль</label>
+                            <input type="password" name="password_confirmation" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
                     </form>
-                    <div class="text-center mt-3">
-                        <a href="{{ route('register') }}">Регистрация</a> 
-                    </div>
                 </div>
             </div>
         </div>
