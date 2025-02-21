@@ -8,11 +8,17 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $news = News::orderBy('created_at', 'desc')->paginate(4);
+    
+        if ($request->ajax()) {
+            return view('news.partials.news_list', compact('news'))->render();
+        }
+    
         return view('news.index', compact('news'));
     }
+    
 
     public function show($id)
     {
