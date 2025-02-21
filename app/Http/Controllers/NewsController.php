@@ -17,6 +17,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
+        $news->increment('views');
         return view('news.show', compact('news'));
     }
 
@@ -40,7 +41,7 @@ class NewsController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imageName,
-            'author' => session('user'),
+            'author_id' => session('user')->id,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

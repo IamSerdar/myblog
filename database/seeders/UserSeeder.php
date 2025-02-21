@@ -17,19 +17,22 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'login' => 'admin',
+                'role' => 'admin',
                 'password' => Hash::make('admin123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'login' => 'user1',
-                'password' => Hash::make('password1'),
+                'login' => 'manager',
+                'role' => 'content_manager',
+                'password' => Hash::make('manager'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'login' => 'user2',
-                'password' => Hash::make('password2'),
+                'login' => 'user',
+                'role' => 'user',
+                'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

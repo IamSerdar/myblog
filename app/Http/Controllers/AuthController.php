@@ -24,7 +24,7 @@ class AuthController extends Controller
         $user = DB::table('users')->where('login', $request->login)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            session(['user' => $user->login]);
+            session(['user' => $user]);
             return redirect()->route('news.index')->with('success', 'Вы успешно вошли!');
         }
 
@@ -49,14 +49,14 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
-        DB::table('users')->insert([
+        $user = DB::table('users')->insert([
             'login' => $request->login,
             'password' => Hash::make($request->password),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        session(['user' => $request->login]);
+        session(['user' => $user]);
 
         return redirect()->route('profile')->with('success', 'Вы успешно зарегистрированы!');
     }

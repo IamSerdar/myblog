@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <h1 class="card-title">{{ $news->name }}</h1>
-            <h4 class="text-muted">Автор: {{ $news->author }}</h4>
+            <h4 class="text-muted">Автор: {{ $news->author->login }}</h4>
             <hr>
             <p class="card-text">{{ $news->description }}</p>
             <div class="d-flex justify-content-end">

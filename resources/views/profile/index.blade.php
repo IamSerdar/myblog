@@ -4,7 +4,7 @@
 
 <div class="container">
     <h2>Личный кабинет</h2>
-    <p><strong>Логин:</strong> {{ $user }}</p>
+    <p><strong>Логин:</strong> {{ $user->login }}</p>
 
     <a href="{{ route('change.password') }}" class="btn btn-warning">Изменить пароль</a>
     <a href="{{ route('news.add') }}" class="btn btn-success">Добавить новость</a>
